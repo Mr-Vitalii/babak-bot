@@ -35,7 +35,7 @@ bot.on("text", (ctx) => {
 
         if (task) task.stop();
 
-        task = cron.schedule("*/1 * * * *", () => {
+        task = cron.schedule("45 7 * * *", () => {
             const currentMessage = messages[currentMessageIndex];
             const image = images[Math.floor(Math.random() * images.length)];
 
@@ -53,7 +53,7 @@ bot.on("text", (ctx) => {
 
         if (task) task.stop();
 
-        task = cron.schedule("*/1 * * * *", () => {
+        task = cron.schedule("45 7 * * *", () => {
             const currentMessage = messages[Math.floor(Math.random() * messages.length)];
             const image = images[Math.floor(Math.random() * images.length)];
 
