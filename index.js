@@ -35,7 +35,7 @@ bot.on("text", (ctx) => {
         if (task) task.stop();
 
         task = new CronJob(
-            "45 7 * * *",
+            "10 9 * * *",
             function () {
                 const currentMessage = messages[currentMessageIndex];
                 const image = images[Math.floor(Math.random() * images.length)];
@@ -57,7 +57,7 @@ bot.on("text", (ctx) => {
         if (task) task.stop();
 
         task = new CronJob(
-            "45 7 * * *",
+            "10 9 * * *",
             function () {
                 const currentMessage = messages[Math.floor(Math.random() * messages.length)];
                 const image = images[Math.floor(Math.random() * images.length)];
