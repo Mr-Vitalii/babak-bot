@@ -15,18 +15,18 @@ const app = express();
 
 app.use(express.json());
 
-let task = null;
+let tasks = {};
 let currentMessageIndex = 0;
 let currentStopIndex = 0;
 
 function startCronJob(chatId) {
-    if (task) {
-        task.stop();
-        task = null;
+    if (tasks[chatId]) {
+        tasks[chatId].stop();
+        delete tasks[chatId];
     }
 
-    task = new CronJob(
-        "0 5 * * *",
+    const task = new CronJob(
+        "10 9 * * *",
         function () {
             const currentMessage = messages[currentMessageIndex];
             const image = images[Math.floor(Math.random() * images.length)];
@@ -41,6 +41,8 @@ function startCronJob(chatId) {
         true,
         "America/Anchorage"
     );
+
+    tasks[chatId] = task;
 }
 
 bot.start((ctx) => {
@@ -67,9 +69,9 @@ bot.on("text", (ctx) => {
         startCronJob(chatId);
 
     } else if (message === "не хочу с тобой дружить") {
-        if (task) {
-            task.stop();
-            task = null;
+        if (tasks[chatId]) {
+            tasks[chatId].stop();
+            delete tasks[chatId];
 
             const currentStopMessage = stopMsgs[currentStopIndex];
             bot.telegram.sendMessage(chatId, currentStopMessage);
@@ -88,6 +90,11 @@ const WEBHOOK_URL = `${process.env.SERVER_URL}/webhook/${process.env.BOT_TOKEN}`
 bot.telegram.setWebhook(WEBHOOK_URL).then(() => {
     console.log(`✅ Webhook установлен: ${WEBHOOK_URL}`);
 });
+
+
+app.get("/", function (req, res) {
+    res.send("Hello")
+})
 
 const PORT = 7001;
 app.listen(PORT, () => {
