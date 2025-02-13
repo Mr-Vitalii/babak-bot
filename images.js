@@ -18,7 +18,6 @@ export const images = [
     "https://res.cloudinary.com/di8xukyyj/image/upload/v1739209680/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/bw1p2u8u9vaghl46eatx.jpg",
     "https://res.cloudinary.com/di8xukyyj/image/upload/v1739209680/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/jsob5fnkmdgrvgbziyp7.jpg",
     "https://res.cloudinary.com/di8xukyyj/image/upload/v1739209680/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/jik7xplfg884ngypupv1.jpg",
-    "dufzhogro5aelv2ksqig",
     "https://res.cloudinary.com/di8xukyyj/image/upload/v1739209680/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/txi4voaf27ugubvkfvge.jpg",
     "https://res.cloudinary.com/di8xukyyj/image/upload/v1739209680/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/f2dlqissfe9dhmg74l7d.jpg",
     "https://res.cloudinary.com/di8xukyyj/image/upload/v1739209681/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/pzlmymzgazfr97revwuo.jpg",
