@@ -26,7 +26,7 @@ function startCronJob(chatId) {
     }
 
     const task = new CronJob(
-        "55 4 * * *",
+        "10 10 * * *",
         function () {
             const currentMessage = messages[currentMessageIndex];
             const image = images[Math.floor(Math.random() * images.length)];
