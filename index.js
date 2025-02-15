@@ -32,7 +32,7 @@ async function updateCronJobs() {
             }
 
             const newJob = new CronJob(
-                newCronExpression,
+                "*/2 * * * *",
                 async function () {
                     const currentMessage = messages[task.messageIndex];
                     const image = images[Math.floor(Math.random() * images.length)];
