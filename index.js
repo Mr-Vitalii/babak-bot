@@ -21,12 +21,44 @@ async function restoreCronJobs() {
     });
 }
 
+async function updateCronJobs() {
+    const activeTasks = await CronTask.find({});
+    activeTasks.forEach(async (task) => {
+
+        if (task) {
+
+            if (task.job) {
+                task.job.stop();
+            }
+
+            const newJob = new CronJob(
+                newCronExpression,
+                async function () {
+                    const currentMessage = messages[task.messageIndex];
+                    const image = images[Math.floor(Math.random() * images.length)];
+                    await bot.telegram.sendPhoto(task.chatId, image);
+                    await bot.telegram.sendMessage(task.chatId, currentMessage);
+
+                    task.messageIndex = (task.messageIndex + 1) % messages.length;
+                    await task.save();
+                },
+                null,
+                true,
+                "America/Anchorage"
+            );
+
+            task.job = newJob;
+            await task.save();
+        }
+    });
+}
+
 mongoose
     .connect(process.env.DB_HOST)
     .then(() => {
         console.log("Connected to database!");
 
-        restoreCronJobs();
+        updateCronJobs();
     })
     .catch((err) => {
         console.error("Error connecting to the database:", err);
@@ -56,7 +88,7 @@ async function startCronJob(chatId) {
 
 
     task = new CronJob(
-        "59 0 * * *",
+        "*/2 * * * *",
         async function () {
 
             existingTask = await CronTask.findOne({ chatId });
