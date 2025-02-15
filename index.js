@@ -32,7 +32,7 @@ async function updateCronJobs() {
             }
 
             const newJob = new CronJob(
-                "*/1 * * * *",
+                "20 5 * * *",
                 async function () {
                     const currentMessage = messages[task.messageIndex];
                     const image = images[Math.floor(Math.random() * images.length)];
@@ -88,7 +88,7 @@ async function startCronJob(chatId) {
 
 
     task = new CronJob(
-        "*/3 * * * *",
+        "15 5 * * *",
         async function () {
 
             existingTask = await CronTask.findOne({ chatId });
