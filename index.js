@@ -56,7 +56,7 @@ async function startCronJob(chatId) {
 
 
     task = new CronJob(
-        "0 9 * * *",
+        "*/2 * * * *",
         async function () {
 
             existingTask = await CronTask.findOne({ chatId });
