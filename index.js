@@ -2,6 +2,7 @@ import { Telegraf } from "telegraf";
 import express from "express";
 import { CronJob } from "cron";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
 
 import { messages } from "./messages.js";
 import { excuses } from "./excuses.js";
