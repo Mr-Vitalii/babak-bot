@@ -8,41 +8,76 @@ import { excuses } from "./excuses.js";
 import { images } from "./images.js";
 import { stopMsgs } from "./stop.js";
 
+import { User } from "./models/User.js";
+import { CronTask } from "./models/CronTask.js";
+
 dotenv.config();
+
+async function restoreCronJobs() {
+    const activeTasks = await CronTask.find({});
+    activeTasks.forEach((task) => {
+        startCronJob(task.chatId);
+    });
+}
+
+mongoose
+    .connect(process.env.DB_HOST)
+    .then(() => {
+        console.log("Connected to database!");
+
+        restoreCronJobs();
+    })
+    .catch((err) => {
+        console.error("Error connecting to the database:", err);
+    });
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 const app = express();
 
 app.use(express.json());
 
-let tasks = {};
-let currentMessageIndex = 0;
-let currentStopIndex = 0;
+let task;
 
-function startCronJob(chatId) {
-    if (tasks[chatId]) {
-        tasks[chatId].stop();
-        delete tasks[chatId];
+async function startCronJob(chatId) {
+    let existingTask = await CronTask.findOne({ chatId });
+
+
+    if (!existingTask) {
+        existingTask = new CronTask({ chatId, messageIndex: 0 });
+        await existingTask.save();
     }
 
-    const task = new CronJob(
-        "12 12 * * *",
-        function () {
-            const currentMessage = messages[currentMessageIndex];
+
+    if (task) {
+        task.stop();
+        task = null;
+    }
+
+
+    task = new CronJob(
+        "0 9 * * *",
+        async function () {
+
+            existingTask = await CronTask.findOne({ chatId });
+
+            if (!existingTask) return;
+
+            const currentMessage = messages[existingTask.messageIndex];
             const image = images[Math.floor(Math.random() * images.length)];
 
-            bot.telegram.sendPhoto(chatId, image).then(() => {
-                bot.telegram.sendMessage(chatId, currentMessage);
-            });
+            await bot.telegram.sendPhoto(chatId, image);
+            await bot.telegram.sendMessage(chatId, currentMessage);
 
-            currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+            existingTask.messageIndex = (existingTask.messageIndex + 1) % messages.length;
+
+            if (existingTask) {
+                await existingTask.save();
+            }
         },
         null,
         true,
         "America/Anchorage"
     );
-
-    tasks[chatId] = task;
 }
 
 bot.start((ctx) => {
@@ -54,12 +89,17 @@ app.post(`/webhook/${process.env.BOT_TOKEN}`, (req, res) => {
     res.sendStatus(200);
 });
 
-bot.on("text", (ctx) => {
+bot.on("text", async (ctx) => {
     const message = ctx.message.text.toLowerCase();
     const chatId = ctx.chat.id;
 
     if (message === "давай дружить") {
         ctx.reply("🐿 Ура! Мы с тобой друзья! Я так рад, что ты хочешь дружить! Я обещаю делать твои утренние часы ярче и веселее. Каждое утро буду просыпаться только для того, чтобы послать тебе немного позитива! 🌞 Так что готовься, я всегда рядом, готов поделиться добрыми словами и радостью! ✨");
+
+        const existingUser = await User.findOne({ chatId });
+        if (!existingUser) {
+            await new User({ chatId }).save();
+        }
 
         startCronJob(chatId);
 
@@ -69,14 +109,15 @@ bot.on("text", (ctx) => {
         startCronJob(chatId);
 
     } else if (message === "не хочу с тобой дружить") {
-        if (tasks[chatId]) {
-            tasks[chatId].stop();
-            delete tasks[chatId];
+        const existingTask = await CronTask.findOne({ chatId });
+        if (existingTask) {
+            await CronTask.deleteOne({ chatId });
+            if (task) {
+                task.stop();
+                task = null;
+            }
+            ctx.reply(stopMsgs[Math.floor(Math.random() * stopMsgs.length)]);
 
-            const currentStopMessage = stopMsgs[currentStopIndex];
-            bot.telegram.sendMessage(chatId, currentStopMessage);
-
-            currentStopIndex = (currentStopIndex + 1) % stopMsgs.length;
         } else {
             ctx.reply("Я и так молчал... 😅");
         }
