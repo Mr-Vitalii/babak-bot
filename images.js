@@ -55,5 +55,17 @@ export const images = [
     "https://res.cloudinary.com/di8xukyyj/image/upload/v1739885181/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/gi7zn0trrb65wtckhwfa.jpg",
     "https://res.cloudinary.com/di8xukyyj/image/upload/v1739885182/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/u5okgkdhscyxwaqy6ls9.jpg",
     "https://res.cloudinary.com/di8xukyyj/image/upload/v1739885182/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/zg8xp2ntvabjoud3ybll.jpg",
-    "https://res.cloudinary.com/di8xukyyj/image/upload/v1739885182/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/fexywmozt7bnyrcou2ic.jpg"
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1739885182/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/fexywmozt7bnyrcou2ic.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581963/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/malgdyrlpwwtkho7w1q2.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581963/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/eznqteug2oyrosgqml8h.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581964/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/ooqeitoi1p9h8vzuegoh.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581964/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/wbiuzcm5jcaw1xhihtfa.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581964/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/whietsrqft5pcmgo2d5o.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581965/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/z4dungk4k9llkp4qx7g3.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581966/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/aoidij1k6dhmbqxenvj5.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581967/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/oiwdgpirnbhdsdywfmpt.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581968/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/fqxo0mkm2brtty1tmlli.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581968/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/y2nj6jfchsgjfe8i7ujo.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581968/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/ngdsi4oua1duwtbhmmxs.jpg",
+    "https://res.cloudinary.com/di8xukyyj/image/upload/v1740581970/%D0%B1%D0%BE%D1%82-%D1%81%D1%83%D1%80%D0%BE%D0%BA/lyncq99odb33p7crrzvy.jpg"
 ];
